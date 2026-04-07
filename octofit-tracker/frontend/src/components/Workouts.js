@@ -9,7 +9,10 @@ function Workouts() {
 
   const fetchWorkouts = () => {
     setLoading(true);
-    const endpoint = 'http://localhost:8000/api/workouts/';
+    const isCodespace = window.location.hostname.includes('.app.github.dev');
+    const endpoint = isCodespace
+      ? `https://${window.location.hostname.split('-')[0]}-8000.app.github.dev/api/workouts/`
+      : 'http://localhost:8000/api/workouts/';
     console.log('[Workouts] Fetch endpoint:', endpoint);
 
     fetch(endpoint)

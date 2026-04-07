@@ -18,7 +18,10 @@ function Activities() {
 
   const fetchActivities = () => {
     setLoading(true);
-    const endpoint = 'http://localhost:8000/api/activities/';
+    const isCodespace = window.location.hostname.includes('.app.github.dev');
+    const endpoint = isCodespace
+      ? `https://${window.location.hostname.split('-')[0]}-8000.app.github.dev/api/activities/`
+      : 'http://localhost:8000/api/activities/';
     console.log('[Activities] Fetch endpoint:', endpoint);
 
     fetch(endpoint)

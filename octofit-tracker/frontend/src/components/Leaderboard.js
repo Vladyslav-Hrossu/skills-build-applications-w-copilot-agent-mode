@@ -11,7 +11,10 @@ function Leaderboard() {
 
   const fetchLeaderboard = () => {
     setLoading(true);
-    const endpoint = 'http://localhost:8000/api/leaderboard/';
+    const isCodespace = window.location.hostname.includes('.app.github.dev');
+    const endpoint = isCodespace
+      ? `https://${window.location.hostname.split('-')[0]}-8000.app.github.dev/api/leaderboard/`
+      : 'http://localhost:8000/api/leaderboard/';
     console.log('[Leaderboard] Fetch endpoint:', endpoint);
 
     fetch(endpoint)

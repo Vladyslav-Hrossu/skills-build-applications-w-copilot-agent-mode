@@ -9,7 +9,10 @@ function Users() {
 
   const fetchUsers = () => {
     setLoading(true);
-    const endpoint = 'http://localhost:8000/api/users/';
+    const isCodespace = window.location.hostname.includes('.app.github.dev');
+    const endpoint = isCodespace
+      ? `https://${window.location.hostname.split('-')[0]}-8000.app.github.dev/api/users/`
+      : 'http://localhost:8000/api/users/';
     console.log('[Users] Fetch endpoint:', endpoint);
 
     fetch(endpoint)

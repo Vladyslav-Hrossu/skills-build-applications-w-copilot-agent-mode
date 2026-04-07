@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000/api';
+// Detect if we're in a GitHub Codespace environment
+const isCodespace = window.location.hostname.includes('.app.github.dev');
+const BASE_URL = isCodespace
+  ? `https://${window.location.hostname.split('-')[0]}-8000.app.github.dev/api`
+  : 'http://localhost:8000/api';
 
 const api = axios.create({
   baseURL: BASE_URL,

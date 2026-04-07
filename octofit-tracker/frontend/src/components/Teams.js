@@ -9,7 +9,10 @@ function Teams() {
 
   const fetchTeams = () => {
     setLoading(true);
-    const endpoint = 'http://localhost:8000/api/teams/';
+    const isCodespace = window.location.hostname.includes('.app.github.dev');
+    const endpoint = isCodespace
+      ? `https://${window.location.hostname.split('-')[0]}-8000.app.github.dev/api/teams/`
+      : 'http://localhost:8000/api/teams/';
     console.log('[Teams] Fetch endpoint:', endpoint);
 
     fetch(endpoint)
