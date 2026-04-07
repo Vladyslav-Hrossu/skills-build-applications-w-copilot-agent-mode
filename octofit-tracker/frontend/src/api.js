@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
-const BASE_URL = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const BASE_URL = 'http://localhost:8000/api';
 
 const api = axios.create({
   baseURL: BASE_URL,
